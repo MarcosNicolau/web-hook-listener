@@ -10,8 +10,8 @@ const deployHook = (req, res) => {
 	}
 	res.send('success');
 	console.log(req.body);
-	shell.chmod('+x', `/scripts/${script || 'deploy'}.sh`);
-	shell.exec(`/scripts/${script || 'deploy'}.sh`, { async: true });
+	shell.chmod('+x', `~/scripts/${script || 'deploy'}.sh`);
+	shell.exec(`~/scripts/${script || 'deploy'}.sh`, { async: true });
 };
 
 module.exports = {

@@ -8,7 +8,9 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-app.get('/mail/deploy', mailDeploy);
-app.post(process.env.DEPLOY_ROUTE || '/deploy', deployHook);
+const deployRoute = process.env.DEPLOY_ROUTE || '/deploy';
 
-app.listen('3000', () => console.log('hook listening on port 3000'));
+app.get(`${deployRoute}/mail`, mailDeploy);
+app.post(deployRoute, deployHook);
+
+app.listen('3000');
