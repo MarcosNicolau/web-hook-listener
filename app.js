@@ -8,9 +8,9 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-const deployRoute = process.env.DEPLOY_ROUTE || '/deploy';
+const deployRoute = process.env.PIPELINE_DEPLOY_ROUTE || '/deploy';
 
-app.get(`${deployRoute}/mail`, mailDeploy);
+app.post(`${deployRoute}/mail`, mailDeploy);
 app.post(deployRoute, deployHook);
 
 app.listen('3000');
