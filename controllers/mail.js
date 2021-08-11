@@ -1,10 +1,10 @@
-const sendMail = require('../utils/send-email');
-const dotenv = require('dotenv');
+const sendMail = require("../utils/send-email");
+const dotenv = require("dotenv");
 dotenv.config();
 
 const mailDeploy = async (req, res) => {
-	const { status, log } = req.query;
-	const statusName = status ? 'successful' : 'failed';
+	const { status, log } = req.body;
+	const statusName = status ? "successful" : "failed";
 	try {
 		await sendMail({
 			subject: `${process.env.DOCKER_IMAGE_NAME} ${statusName.toUpperCase()} deploy`,
@@ -13,8 +13,8 @@ const mailDeploy = async (req, res) => {
 			<p>Docker log: ${log}</p>
 			`,
 		});
-		res.send('email sended');
-	} catch (err) {
+		res.send("email sended");
+	} catch (error) {
 		res.send(`could not send email, error ${error}`);
 	}
 };
