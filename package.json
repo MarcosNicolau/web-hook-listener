@@ -4,8 +4,10 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "node app.js"
+		"start": "node app.js",
+		"docker:build": "docker build . -t marcosnicolau/webhook-listener",
+		"docker:push": "docker push marcosnicolau/webhook-listener",
+		"deploy": "npm run docker:build && npm run docker:push"
 	},
 	"keywords": [],
 	"author": "",
