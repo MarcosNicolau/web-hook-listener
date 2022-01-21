@@ -13,8 +13,8 @@ const deployHook = (req, res) => {
 		return res.status(401).send("wrong token");
 	}
 	res.send("success");
-	shell.chmod("+x", `/scripts/${script || "deploy"}.sh`);
-	shell.exec(`/scripts/${script || "deploy"}.sh`, { async: true });
+	shell.chmod("+x", `${process.env.SCRIPTS_DIRECTORY}/${script || "deploy"}.sh`);
+	shell.exec(`${process.env.SCRIPTS_DIRECTORY}/${script || "deploy"}.sh`, { async: true });
 };
 
 module.exports = {

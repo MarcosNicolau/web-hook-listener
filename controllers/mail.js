@@ -7,8 +7,8 @@ const mailDeploy = async (req, res) => {
 	const statusName = status ? "successful" : "failed";
 	try {
 		await sendMail({
-			subject: `${process.env.DOCKER_IMAGE_NAME} ${statusName.toUpperCase()} deploy`,
-			text: `Server with ${process.env.DOCKER_IMAGE_NAME} was pulled and run the latest image, with a ${statusName} deploy. Docker log: ${log}`,
+			subject: `docker-compose had a ${statusName.toUpperCase()} deploy`,
+			text: `A deploy ran, with a ${statusName} status. log: ${log}`,
 			html: `<p>Server with ${process.env.DOCKER_IMAGE_NAME} image was pulled and run the latest image, with a ${statusName} deploy</p>
 			<p>Docker log: ${log}</p>
 			`,

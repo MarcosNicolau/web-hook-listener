@@ -1,13 +1,16 @@
 FROM docker:latest as docker
-FROM node:current-alpine as node
+FROM node:16-alpine as node
+
 COPY --from=docker . /
-FROM alpine:latest as alpine
-COPY --from=node . .
 
 RUN apk update && apk upgrade
 RUN apk add curl
 
-WORKDIR /hook
+# Install docker-compose
+RUN apk add docker-compose
+RUN docker-compose --version
+
+WORKDIR /app
 COPY ./package*.json .
 
 # Install app dependencies
